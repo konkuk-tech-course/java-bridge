@@ -5,7 +5,9 @@
     - [x] 필드, 생성자, getter
     - [x] 다리에 필요한 상수 생성
     - [x] 유효성 검증
-- Bridge
+- [ ] Bridge
+    - [ ] 필드, 생성자, getter
+    - [ ] n번째 칸에 대한 시도 결과 boolean 반환
 - User
 
 ## service
