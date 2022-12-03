@@ -16,4 +16,17 @@ public class BridgeGameTest {
         System.out.println(BridgeGame.bridges);
         assertThat(t1).isTrue();
     }
+
+    @Test
+    void moveTest2() {
+        BridgeGame.clear();
+        boolean t = BridgeGame.move("U",false);
+
+        assertThat(t).isFalse();
+        boolean t1 = BridgeGame.bridges.get(0).contains(" X ");
+        boolean t2 = BridgeGame.bridges.get(1).contains("   ");
+        System.out.println(BridgeGame.bridges);
+        assertThat(t1).isTrue();
+        assertThat(t2).isTrue();
+    }
 }
