@@ -23,6 +23,10 @@ public class Bridge {
         return order - 1;
     }
 
+    public boolean isLastPanel(int order) {
+        return order == length.getLength();
+    }
+
     public int getLength() {
         return length.getLength();
     }
