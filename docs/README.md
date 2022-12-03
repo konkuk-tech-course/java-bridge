@@ -18,7 +18,8 @@
     - [x] 게임 성공 관련 메서드
 
 ## service
-- UserService
+- [x] UserService
+    - [x] User 생성
 - BridgeService
 - GameService
 
