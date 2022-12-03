@@ -8,8 +8,8 @@ public class GameSet {
         this.gameResult = new GameResult();
     }
 
-    public boolean isRetry(String readCommendValidate, BridgeGame bridgeGame) {
-        if(readCommendValidate.equals("R")){
+    public boolean isRetry(String readCommandValidate, BridgeGame bridgeGame) {
+        if(readCommandValidate.equals(GameCommand.RETRY.getCommand())){
             bridgeGame.retry();
             gameResult.setGameResult(true);
             return true;
@@ -17,7 +17,6 @@ public class GameSet {
         gameResult.setGameResult(false);
         return false;
     }
-
     public boolean getGameResult(){
        return gameResult.getGameResult();
     }
