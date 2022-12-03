@@ -26,4 +26,14 @@ public class BridgeTest {
     void When_InputSymbolDoesNotEqualWithPanel_Expect_False() {
         assertThat(bridge.checkPanel(1, "D")).isFalse();
     }
+
+    @Test
+    void When_LastOrderOfPanel_Expect_True() {
+        assertThat(bridge.isLastPanel(3)).isTrue();
+    }
+
+    @Test
+    void When_BeforeLastOrderOfPanel_Expect_False() {
+        assertThat(bridge.isLastPanel(2)).isFalse();
+    }
 }
