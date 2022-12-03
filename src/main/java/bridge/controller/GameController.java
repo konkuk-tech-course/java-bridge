@@ -43,6 +43,7 @@ public class GameController {
         while(user.getStatus() == UserStatus.PLAY) {
             String option = requestOptionInput(inputView::readMoving);
             bridgeGame.move(user, bridge, option);
+            outputView.printMap(bridgeGame.makeResult(user, bridge));
             if (user.getStatus() == UserStatus.FAIL) {
                 retry(user);
             }
@@ -63,5 +64,13 @@ public class GameController {
             outputView.printErrorMessage(e.getMessage());
             return requestOptionInput(supplier);
         }
+    }
+
+    public void finishGame(User user, Bridge bridge) {
+        outputView.printResult(
+                bridgeGame.makeResult(user, bridge),
+                user.getStatus() == UserStatus.SUCCESS,
+                user.getAttemptCount()
+        );
     }
 }
