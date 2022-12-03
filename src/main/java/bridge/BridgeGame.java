@@ -6,7 +6,6 @@ import static bridge.BridgeGameController.repeatAskRestart;
 import static bridge.BridgeGameController.repeatReadMoving;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -19,7 +18,6 @@ public class BridgeGame {
     private Boolean success = false;
     private Integer tryCount = 0;
     private static List<String> playerMap = new ArrayList<>();
-    private Boolean keepPlay = true;
     public BridgeGame() {
         play();
     }
@@ -27,35 +25,32 @@ public class BridgeGame {
     public void play() {
         System.out.println(bridgeInfo.toString());
         this.success = false;
-        this.keepPlay = true;
-        repeatGame();
+        Boolean keepPlay = true;
+        while (keepPlay) {
+            keepPlay = proceedGame();
+        }
         printResult(new BridgeMap(playerMap, bridgeInfo).showMap(), success, tryCount);
     }
 
-    public void repeatGame() {
-        while (keepPlay) {
-            this.playerMap.clear();
-            Boolean result = repeatProcess();
-            this.tryCount++;
-            if (result) {
-                this.success = true;
-                break;
-            }
-            retry();
+    public Boolean proceedGame() {
+        this.playerMap.clear();
+        this.tryCount++;
+        Boolean result = repeatProcess();
+        if (result) {
+            this.success = true;
+            return false;
         }
+        return retry();
     }
 
     public Boolean repeatProcess() {
-        for (Integer index = 0; index < bridgeSize; index++) {
-            BridgeGameController.print("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+        for (Integer index = 0; index < bridgeSize; index++)
+        { BridgeGameController.print("이동할 칸을 선택해주세요. (위: U, 아래: D)");
             String input = repeatReadMoving();
             Boolean result = new BridgeAnalyze(input, index, bridgeInfo).analyze();
             move(input);
             printMap(playerMap, bridgeInfo);
-            if (!result) {
-                return false;
-            }
-        }
+            if (!result) { return false; } }
         return true;
     }
 
@@ -73,7 +68,7 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
-        this.keepPlay = repeatAskRestart();
+    public Boolean retry() {
+        return repeatAskRestart();
     }
 }

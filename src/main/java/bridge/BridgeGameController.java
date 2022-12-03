@@ -19,11 +19,8 @@ public class BridgeGameController {
                 OutputView.String("다리의 길이를 입력해주세요.");
                 Integer bridgeSize = InputView.readBridgeSize();
                 return bridgeSize;
-            } catch (NumberFormatException e) {
-                OutputView.String("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
-            } catch (IllegalArgumentException e) {
-                OutputView.String("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
-            }
+            } catch (NumberFormatException e) { OutputView.String("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+            } catch (IllegalArgumentException e) { OutputView.String("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다."); }
         }
     }
 
@@ -47,7 +44,6 @@ public class BridgeGameController {
                 OutputView.String("[ERROR] 유효한 값을 입력해주세요. (재시도: R, 종료: Q)");
             }
         }
-
     }
 
     public static void print(String str) {

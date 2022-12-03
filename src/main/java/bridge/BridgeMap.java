@@ -5,8 +5,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class BridgeMap {
-    private List<String> playerMap = new ArrayList<>();
-    private List<String> bridgeInfo = new ArrayList<>();
+    private List<String> playerMap;
+    private List<String> bridgeInfo;
     private List<String> upperMap = new ArrayList<>();
     private List<String> lowerMap = new ArrayList<>();
     private List<List<String>> result;
@@ -17,12 +17,8 @@ public class BridgeMap {
     }
     public List<List<String>> makeMap() {
         for (Integer i=0; i < playerMap.size(); i++) {
-            if (playerMap.get(i).equals(bridgeInfo.get(i))) {
-                makeCorrectMap(i);
-            }
-            if (!playerMap.get(i).equals(bridgeInfo.get(i))) {
-                makeWrongMap(i);
-            }
+            if (playerMap.get(i).equals(bridgeInfo.get(i))) { makeCorrectMap(i); }
+            if (!playerMap.get(i).equals(bridgeInfo.get(i))) { makeWrongMap(i); }
         }
         List<List<String>> result = new ArrayList<>(Arrays.asList(upperMap, lowerMap));
         return result;
