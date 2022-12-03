@@ -1,5 +1,6 @@
 package bridge;
 
+import static bridge.BridgeGameController.print;
 import static bridge.BridgeGameController.printMap;
 import static bridge.BridgeGameController.printResult;
 import static bridge.BridgeGameController.repeatAskRestart;
@@ -12,18 +13,22 @@ import java.util.List;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private static final List<String> bridgeInfo = BridgeGameController
-            .initializeBridge(BridgeGameController.repeatReadBridgeSize());
-    private final Integer bridgeSize = bridgeInfo.size();
+    private final List<String> bridgeInfo;
+    private final Integer bridgeSize;
     private Boolean success = false;
     private Integer tryCount = 0;
     private static List<String> playerMap = new ArrayList<>();
     public BridgeGame() {
+        print("다리 건너기 게임을 시작합니다.");
+        this.bridgeInfo = BridgeGameController
+                .initializeBridge(BridgeGameController.repeatReadBridgeSize());
+        this.bridgeSize = bridgeInfo.size();
         play();
     }
 
     public void play() {
         System.out.println(bridgeInfo.toString());
+
         this.success = false;
         Boolean keepPlay = true;
         while (keepPlay) {
