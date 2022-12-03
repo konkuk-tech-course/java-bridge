@@ -4,6 +4,13 @@ package bridge.service;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+    private static class InstanceHolder {
+        private static final BridgeGame INSTANCE = new BridgeGame();
+    }
+
+    public static BridgeGame getInstance() {
+        return BridgeGame.InstanceHolder.INSTANCE;
+    }
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
