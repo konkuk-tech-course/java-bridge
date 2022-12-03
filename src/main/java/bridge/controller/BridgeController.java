@@ -3,6 +3,7 @@ package bridge.controller;
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.BridgeGame;
+import bridge.domain.GameSet;
 import bridge.service.ValidateMove;
 import bridge.service.ValidateSize;
 import bridge.view.InputView;
@@ -28,13 +29,19 @@ public class BridgeController {
     public void start(){
         int size = readBridgeValidate();
         List<String> statementBridge = bridgeMaker.makeBridge(size);
-        moveStart(statementBridge);
+        System.out.println("statementBridge = " + statementBridge);;
+        moveStart(statementBridge,size);
     }
 
-    private void moveStart(List<String> statementBridge) {
+    private void moveStart(List<String> statementBridge, int size) {
         BridgeGame bridgeGame = new BridgeGame(statementBridge);
-        while(true){
-            bridgeGame.move(readMovingValidate());
+        int idx=0;
+        boolean retry=true;
+        while(retry){
+            if(!bridgeGame.move(readMovingValidate())){
+                GameSet gameSet = new GameSet();
+                gameSet.retryOrQuit(inputView.readGameCommand());
+            }
         }
 
     }
@@ -44,7 +51,7 @@ public class BridgeController {
         int size=0;
         try{
             outputView.printInputSize();
-            validateSize.validate(inputView.readBridgeSize());
+            size = validateSize.validate(inputView.readBridgeSize());
         }catch(IllegalArgumentException e){
             outputView.printException(e.getMessage());
             return readBridgeValidate();
@@ -64,4 +71,16 @@ public class BridgeController {
         }
         return move;
     }
+    private int readCommendValidate(){
+        int size=0;
+        try{
+            outputView.printInputSize();
+            size = validateSize.validate(inputView.readBridgeSize());
+        }catch(IllegalArgumentException e){
+            outputView.printException(e.getMessage());
+            return readBridgeValidate();
+        }
+        return size;
+    }
+
 }
