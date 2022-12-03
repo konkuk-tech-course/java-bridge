@@ -3,6 +3,7 @@
 ## domain
 - [ ] BridgeLength
     - [ ] 필드, 생성자, getter
+    - [x] 필드, 생성자, getter
     - [ ] 유효성 검증
 - Bridge
 - User
