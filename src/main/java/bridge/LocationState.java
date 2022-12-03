@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.domain.GameState;
+
 public enum LocationState {
 
     UP("U"),
@@ -14,9 +16,9 @@ public enum LocationState {
 
     public static String convertGenerateToLocation(int generate) {
         if(generate == GENERATE_DOWN){
-            return "D";
+            return DOWN.state;
         }
-        return "U";
+        return UP.state;
     }
 
     public String getState() {
