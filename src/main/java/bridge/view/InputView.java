@@ -34,6 +34,8 @@ public class InputView {
      */
     public String readGameCommand() {
         System.out.println(InputPhrase.RETRY.get());
-        return null;
+        String retryOptionInput = Console.readLine().trim();
+        ViewValidator.validateRetryOptionInput(retryOptionInput);
+        return retryOptionInput;
     }
 }
