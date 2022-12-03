@@ -35,8 +35,8 @@ public class Controller {
     }
     public void play(Bridge b, int attempt) {
         boolean result;
-        while(true) {
-            result = successCrossingSquare(b);
+        do {
+            result = resultCrossingBridge(b);
             if(result) {
                 break;
             }
@@ -45,9 +45,13 @@ public class Controller {
                 break;
             }
             attempt++;
-        }
+        } while (true);
         outputView.printResult(BridgeGame.bridges, result);
         outputView.printAttempt(attempt);
+    }
+    public boolean resultCrossingBridge(Bridge bridge) {
+        BridgeGame.clear();
+        return crossBridge(bridge.getBridge());
     }
 
     private boolean crossBridge(List<String> bridge) {
@@ -66,10 +70,6 @@ public class Controller {
         boolean success = upDown.equals(square);
 
         return BridgeGame.move(upDown,success);
-    }
-    public boolean successCrossingSquare(Bridge bridge) {
-        BridgeGame.clear();
-        return crossBridge(bridge.getBridge());
     }
 
     public String quitGame() {

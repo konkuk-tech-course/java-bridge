@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import static bridge.util.Constant.*;
 import static bridge.util.ExceptionCode.INVALID_QUIT_ANSWER;
 
 /**
@@ -29,21 +30,21 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public static boolean move(String input, boolean success) {
-        if(Objects.equals(input, "U")) {
+        if(Objects.equals(input, U.getValue())) {
             bridges.get(0).add(successCrossBridge(success));
-            bridges.get(1).add("   ");
+            bridges.get(1).add(BLANK.getValue());
         }
-        if(Objects.equals(input, "D")) {
-            bridges.get(0).add("   ");
+        if(Objects.equals(input, D.getValue())) {
+            bridges.get(0).add(BLANK.getValue());
             bridges.get(1).add(successCrossBridge(success));
         }
         return success;
     }
     private static String successCrossBridge(boolean success){
         if(success) {
-            return " O ";
+            return O.getValue();
         }
-        return " X ";
+        return X.getValue();
     }
 
     /**

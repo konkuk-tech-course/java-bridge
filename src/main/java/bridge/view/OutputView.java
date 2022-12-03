@@ -1,12 +1,9 @@
 package bridge.view;
 
-import bridge.util.Constant;
-
-import javax.swing.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static bridge.util.Constant.*;
+import static bridge.util.GamePhrase.*;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
