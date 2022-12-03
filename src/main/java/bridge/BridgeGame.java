@@ -1,10 +1,6 @@
 package bridge;
 
-import static bridge.BridgeGameController.print;
-import static bridge.BridgeGameController.printMap;
-import static bridge.BridgeGameController.printResult;
-import static bridge.BridgeGameController.repeatAskRestart;
-import static bridge.BridgeGameController.repeatReadMoving;
+import static bridge.BridgeGameController.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,15 +16,12 @@ public class BridgeGame {
     private static List<String> playerMap = new ArrayList<>();
     public BridgeGame() {
         print("다리 건너기 게임을 시작합니다.");
-        this.bridgeInfo = BridgeGameController
-                .initializeBridge(BridgeGameController.repeatReadBridgeSize());
+        this.bridgeInfo = initializeBridge(repeatReadBridgeSize());
         this.bridgeSize = bridgeInfo.size();
         play();
     }
 
     public void play() {
-        System.out.println(bridgeInfo.toString());
-
         this.success = false;
         Boolean keepPlay = true;
         while (keepPlay) {
@@ -50,7 +43,7 @@ public class BridgeGame {
 
     public Boolean repeatProcess() {
         for (Integer index = 0; index < bridgeSize; index++)
-        { BridgeGameController.print("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+        { print("이동할 칸을 선택해주세요. (위: U, 아래: D)");
             String input = repeatReadMoving();
             Boolean result = new BridgeAnalyze(input, index, bridgeInfo).analyze();
             move(input);
