@@ -12,6 +12,6 @@ public enum DomainErrorMessage {
     }
 
     public String get() {
-        return message;
+        return PREFIX + message;
     }
 }
