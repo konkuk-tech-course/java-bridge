@@ -55,6 +55,7 @@
         - [x] printMap 메서드 작성
     - [ ] printResult 구현
         - [ ] 출력 문구 생성
+        - [ ] 성공 여부 결과 style 관련 enum 생성
         - [ ] printResult 메서드 작성
 
 ## controller
