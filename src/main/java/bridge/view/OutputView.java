@@ -3,6 +3,8 @@ package bridge.view;
 import bridge.service.constant.ChoiceResult;
 import bridge.view.constant.BridgeStyle;
 import bridge.view.constant.ChoiceResultStyle;
+import bridge.view.constant.OutputPhrase;
+import bridge.view.constant.ResultStyle;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -50,6 +52,23 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(List<List<ChoiceResult>> bridge, boolean isGameClear, int attemptCount) {
+        System.out.println(OutputPhrase.TITLE.get());
+        printMap(bridge);
+        insertLineBreak();
+        System.out.println(createResultPhrase(isGameClear));
+        System.out.println(createAttemptCountPhrase(attemptCount));
+    }
+
+    private String createResultPhrase(boolean isGameClear) {
+        return String.format(OutputPhrase.RESULT.get(), ResultStyle.findStyle(isGameClear));
+    }
+
+    private String createAttemptCountPhrase(int attemptCount) {
+        return String.format(OutputPhrase.ATTEMPT_COUNT.get(), attemptCount);
+    }
+
+    public void insertLineBreak() {
+        System.out.println();
     }
 }
