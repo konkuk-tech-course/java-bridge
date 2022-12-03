@@ -1,24 +1,24 @@
 package bridge;
 
-import static bridge.BridgeGameController.makeMap;
 import static bridge.BridgeGameController.printMap;
 import static bridge.BridgeGameController.printResult;
 import static bridge.BridgeGameController.repeatAskRestart;
 import static bridge.BridgeGameController.repeatReadMoving;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private final List<String> bridgeInfo = BridgeGameController
+    private static final List<String> bridgeInfo = BridgeGameController
             .initializeBridge(BridgeGameController.repeatReadBridgeSize());
     private final Integer bridgeSize = bridgeInfo.size();
     private Boolean success = false;
     private Integer tryCount = 0;
-    private List<String> playerMap = new ArrayList<>();
+    private static List<String> playerMap = new ArrayList<>();
     private Boolean keepPlay = true;
     public BridgeGame() {
         play();
@@ -29,7 +29,7 @@ public class BridgeGame {
         this.success = false;
         this.keepPlay = true;
         repeatGame();
-        printResult(makeMap(playerMap, bridgeInfo), success, tryCount);
+        printResult(new BridgeMap(playerMap, bridgeInfo).showMap(), success, tryCount);
     }
 
     public void repeatGame() {
