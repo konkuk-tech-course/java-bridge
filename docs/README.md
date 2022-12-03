@@ -59,4 +59,7 @@
         - [x] printResult 메서드 작성
 
 ## controller
-- GameController
+- [ ] main 메서드 구현
+    - [ ] 유저 생성
+    - [ ] Bridge 생성
+    - [ ] GameController 구현
