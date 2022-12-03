@@ -11,6 +11,7 @@ public class InputStringValidator {
         }
     }
 
+
     public void validateRestart(String restart) {
         if(!(restart.equals(Q.getValue()) || restart.equals(R.getValue()))) {
             throw new IllegalArgumentException(ExceptionCode.INVALID_QUIT_ANSWER.getMessage());

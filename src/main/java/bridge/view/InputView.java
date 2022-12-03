@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.validator.InputReadCommandValidator;
 import bridge.validator.InputStringValidator;
 import bridge.validator.InputSizeValidator;
 import camp.nextstep.edu.missionutils.Console;
@@ -10,10 +11,12 @@ import camp.nextstep.edu.missionutils.Console;
 public class InputView {
 
     private final InputSizeValidator inputSizeValidator;
-    private final InputStringValidator inputStringValidator;
+    private final InputStringValidator inputDirectionValidator;
+    private final InputReadCommandValidator inputReadCommandValidator;
     public InputView() {
         inputSizeValidator = new InputSizeValidator();
-        inputStringValidator = new InputStringValidator();
+        inputDirectionValidator = new InputStringValidator();
+        inputReadCommandValidator = new InputReadCommandValidator();
     }
 
     /**
@@ -30,7 +33,7 @@ public class InputView {
      */
     public String readMoving() {
         String input = Console.readLine();
-        inputStringValidator.validateDirection(input);
+        inputDirectionValidator.validateDirection(input);
         return input;
     }
 
@@ -39,7 +42,7 @@ public class InputView {
      */
     public String readGameCommand() {
         String input = Console.readLine();
-        inputStringValidator.validateRestart(input);
+        inputReadCommandValidator.validateRestart(input);
         return input;
     }
 }

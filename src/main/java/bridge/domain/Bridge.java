@@ -6,6 +6,8 @@ import java.util.List;
 
 public class Bridge {
 
+    private static final int MAX_SIZE = 20;
+    private static final int MIN_SIZE = 3;
     private final List<String> bridge;
     private final int size;
 
@@ -16,7 +18,7 @@ public class Bridge {
     }
 
     private void validate() {
-        if(size > 20 || size <3) {
+        if(size > MAX_SIZE || size <MIN_SIZE) {
             throw new IllegalArgumentException(ExceptionCode.INVALID_SIZE_RANGE.getMessage());
         }
     }

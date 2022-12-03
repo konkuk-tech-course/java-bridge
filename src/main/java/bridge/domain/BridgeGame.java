@@ -13,13 +13,16 @@ import static bridge.constant.Constant.*;
  */
 public class BridgeGame {
 
-    public static List<List<String>> bridges = new ArrayList<>();
+    public static List<List<String>> bridges;
+    static {
+        bridges = List.of(new ArrayList<>(), new ArrayList<>());
+    }
     private BridgeGame() {
     }
 
     public static void clear() {
-        bridges = new ArrayList<>();
-        bridges = List.of(new ArrayList<>(), new ArrayList<>());
+        bridges.get(0).clear();
+        bridges.get(1).clear();
     }
 
     /**
