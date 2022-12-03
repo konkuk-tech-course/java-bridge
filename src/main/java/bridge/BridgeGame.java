@@ -32,10 +32,10 @@ public class BridgeGame {
     }
 
     public Boolean repeatProcess() {
-        for (Integer I = 0; I < bridgeSize; I++) {
+        for (Integer index = 0; index < bridgeSize; index++) {
             BridgeGameController.print("이동할 칸을 선택해주세요. (위: U, 아래: D)");
             String input = repeatReadMoving();
-            Boolean result = BridgeGameController.analyzeMoving(input);
+            Boolean result = new BridgeAnalyze(input, index, bridgeInfo).analyze();
             if (result) {
                 move();
             }
