@@ -3,6 +3,8 @@ package bridge;
 import static bridge.InputView.readGameCommand;
 import static bridge.InputView.readMoving;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class BridgeGameController {
@@ -54,10 +56,36 @@ public class BridgeGameController {
         OutputView.String(str);
     }
 
-    public static void printResult(Boolean success, Integer tryCount) {
-        if (success) {
-            OutputView.printResult("성공", tryCount);
+    public static List<List<String>> printMap(List<String> playerMap, List<String> bridgeInfo) {
+        List<String> upperMap = new ArrayList<>();
+        List<String> lowerMap = new ArrayList<>();
+        for (Integer i=0; i < playerMap.size(); i++) {
+            if (playerMap.get(i).equals(bridgeInfo.get(i))) {
+                if (playerMap.get(i).equals("U")) {
+                    upperMap.add(" O ");
+                    lowerMap.add("   ");
+                }
+                if (playerMap.get(i).equals("D")) {
+                    upperMap.add("   ");
+                    lowerMap.add(" O ");
+                }
+            }
+            if (playerMap.get(i).equals("U")) {
+                upperMap.add(" X ");
+                lowerMap.add("   ");
+            }
+            if (playerMap.get(i).equals("D")) {
+                upperMap.add("   ");
+                lowerMap.add(" X ");
+            }
         }
-        OutputView.printResult("실패", tryCount);
+        return new ArrayList<>(Arrays.asList(upperMap, lowerMap));
+    }
+
+    public static void printResult(List<List<String>> map, Boolean success, Integer tryCount) {
+        if (success) {
+            OutputView.printResult(map, "성공", tryCount);
+        }
+        OutputView.printResult(map, "실패", tryCount);
     }
 }

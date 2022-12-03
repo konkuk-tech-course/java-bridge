@@ -1,10 +1,12 @@
 package bridge;
 
+import static bridge.BridgeGameController.printMap;
 import static bridge.BridgeGameController.printResult;
 import static bridge.BridgeGameController.repeatAskRestart;
 import static bridge.BridgeGameController.repeatReadMoving;
 import static bridge.InputView.readGameCommand;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -15,7 +17,7 @@ public class BridgeGame {
     private final Integer bridgeSize = bridgeInfo.size();
     private Boolean success = false;
     private Integer tryCount = 0;
-    private Integer playerLocation = 0;
+    private List<String> playerMap;
     private Boolean keepPlay = true;
     public BridgeGame() {
         play();
@@ -23,14 +25,12 @@ public class BridgeGame {
 
     public void play() {
         this.success = false;
-        this.playerLocation = 0;
+        this.playerMap = new ArrayList<>();
         this.keepPlay = true;
         while (keepPlay) {
             Boolean result = repeatProcess();
-            if (result) {
-                printResult();
-            }
             this.tryCount++;
+            printResult(printMap(playerMap, bridgeInfo), success, tryCount);
             retry(result);
         }
     }
@@ -40,9 +40,8 @@ public class BridgeGame {
             BridgeGameController.print("이동할 칸을 선택해주세요. (위: U, 아래: D)");
             String input = repeatReadMoving();
             Boolean result = new BridgeAnalyze(input, index, bridgeInfo).analyze();
-            if (result) {
-                move();
-            }
+            move(input);
+            printMap(playerMap, bridgeInfo);
             if (!result) {
                 return false;
             }
@@ -55,8 +54,8 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move() {
-        playerLocation++;
+    public void move(String input) {
+        this.playerMap.add(input);
     }
 
     /**
