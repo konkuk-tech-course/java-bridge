@@ -2,6 +2,8 @@ package bridge;
 
 import bridge.controller.Controller;
 
+import static bridge.util.Constant.ERROR;
+
 public class Application {
 
     public static void main(String[] args) {
@@ -11,7 +13,7 @@ public class Application {
         try {
             controller.run();
         } catch (IllegalArgumentException e) {
-            System.out.print("[ERROR]"+e.getMessage());
+            System.out.print(ERROR.getValue() +e.getMessage());
         }
 
     }
