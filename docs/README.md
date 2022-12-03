@@ -23,11 +23,11 @@
 - [x] BridgeService
     - [x] BridgeMaker의 makeBridge 구현
     - [x] 다리 생성
-- [ ] GameService == BridgeGame
-    - [ ] move 메서드 구현
-    - [ ] retry 메서드 구현
-    - [ ] 시도 결과에 관한 enum 생성
-    - [ ] 주어진 칸까지의 시도 결과를 줄 별 리스트로 반환하는 메서드
+- [x] GameService == BridgeGame
+    - [x] move 메서드 구현
+    - [x] retry 메서드 구현
+    - [x] 시도 결과에 관한 enum 생성
+    - [x] 주어진 칸까지의 시도 결과를 줄 별 리스트로 반환하는 메서드
 
 ## view
 - InputView
