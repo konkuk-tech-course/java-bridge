@@ -23,6 +23,7 @@ public class OutputView {
 
     public void printStartPhrase() {
         System.out.println(OutputPhrase.GAME_START.get());
+        insertLineBreak();
     }
 
     /**
@@ -62,6 +63,7 @@ public class OutputView {
         insertLineBreak();
         System.out.println(createResultPhrase(isGameClear));
         System.out.println(createAttemptCountPhrase(attemptCount));
+        insertLineBreak();
     }
 
     private String createResultPhrase(boolean isGameClear) {
