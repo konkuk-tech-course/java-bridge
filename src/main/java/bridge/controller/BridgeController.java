@@ -1,25 +1,29 @@
 package bridge.controller;
 
+import bridge.BridgeMaker;
+import bridge.BridgeRandomNumberGenerator;
 import bridge.service.ValidateSize;
 import bridge.view.InputView;
 import bridge.view.OutputView;
+import java.util.List;
 
 public class BridgeController {
 
 
     InputView inputView;
     OutputView outputView;
-    ValidateSize validateSize = new ValidateSize();
-
+    ValidateSize validateSize;
+    BridgeMaker bridgeMaker;
     public BridgeController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.validateSize = validateSize;
+        this.validateSize = new ValidateSize();
+        this.bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     }
 
     public void start(){
         int size = readBridgeValidate();
-
+        List<String> statementBridge = bridgeMaker.makeBridge(size);
 
     }
 
