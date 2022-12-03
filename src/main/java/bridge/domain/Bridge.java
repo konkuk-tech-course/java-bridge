@@ -1,6 +1,6 @@
 package bridge.domain;
 
-import bridge.util.ExceptionCode;
+import bridge.constant.ExceptionCode;
 
 import java.util.List;
 

@@ -1,15 +1,15 @@
 package bridge.controller;
 
+import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.Bridge;
 import bridge.domain.BridgeGame;
 import bridge.domain.BridgeMaker;
-import bridge.BridgeRandomNumberGenerator;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
 import java.util.List;
 
-import static bridge.util.RestartConverter.Q;
+import static bridge.converter.RestartConverter.Q;
 
 public class Controller {
     private final BridgeMaker bridgeMaker;
@@ -33,22 +33,32 @@ public class Controller {
 
         play(b, attempt);
     }
-    public void play(Bridge b, int attempt) {
+    private void play(Bridge b, int attempt) {
         boolean result;
         do {
             result = resultCrossingBridge(b);
             if(result) {
                 break;
             }
-            String restart = quitGame();
-            if(restart.equals(Q.getRestart())) {
-                break;
-            }
+            if (restart()) break;
             attempt++;
         } while (true);
+        printEnd(attempt, result);
+    }
+
+    private void printEnd(int attempt, boolean result) {
         outputView.printResult(BridgeGame.bridges, result);
         outputView.printAttempt(attempt);
     }
+
+    private boolean restart() {
+        String restart = quitGame();
+        if(restart.equals(Q.getRestart())) {
+            return true;
+        }
+        return false;
+    }
+
     public boolean resultCrossingBridge(Bridge bridge) {
         BridgeGame.clear();
         return crossBridge(bridge.getBridge());

@@ -1,14 +1,12 @@
 package bridge.domain;
 
-import bridge.util.ExceptionCode;
-import bridge.util.RestartConverter;
+import bridge.converter.RestartConverter;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import static bridge.util.Constant.*;
-import static bridge.util.ExceptionCode.INVALID_QUIT_ANSWER;
+import static bridge.constant.Constant.*;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스

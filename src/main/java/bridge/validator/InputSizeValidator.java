@@ -1,6 +1,6 @@
 package bridge.validator;
 
-import bridge.util.ExceptionCode;
+import bridge.constant.ExceptionCode;
 
 import java.util.NoSuchElementException;
 

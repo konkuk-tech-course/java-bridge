@@ -1,4 +1,4 @@
-package bridge.util;
+package bridge.constant;
 
 public enum ExceptionCode {
     WRONG_NUMBER("wrong Number"),
@@ -17,3 +17,4 @@ public enum ExceptionCode {
         return message;
     }
 }
+

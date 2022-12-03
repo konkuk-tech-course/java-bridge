@@ -1,8 +1,8 @@
 package bridge.validator;
 
-import bridge.util.ExceptionCode;
+import bridge.constant.ExceptionCode;
 
-import static bridge.util.Constant.*;
+import static bridge.constant.Constant.*;
 
 public class InputStringValidator {
     public void validateDirection(String direction) {

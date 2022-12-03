@@ -1,8 +1,6 @@
-package bridge.util;
+package bridge.converter;
 
 import java.util.Arrays;
-
-import static bridge.util.ExceptionCode.INVALID_QUIT_ANSWER;
 
 public enum RestartConverter {
     Q("Q", false),

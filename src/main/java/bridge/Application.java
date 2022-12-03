@@ -2,7 +2,7 @@ package bridge;
 
 import bridge.controller.Controller;
 
-import static bridge.util.Constant.ERROR;
+import static bridge.constant.Constant.ERROR;
 
 public class Application {
 

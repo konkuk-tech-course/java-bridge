@@ -1,4 +1,4 @@
-package bridge.util;
+package bridge.constant;
 
 public enum Constant {
     U("U"),

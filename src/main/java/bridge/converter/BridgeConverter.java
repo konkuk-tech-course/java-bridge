@@ -1,8 +1,8 @@
-package bridge.util;
+package bridge.converter;
 
 import java.util.Arrays;
 
-import static bridge.util.ExceptionCode.WRONG_NUMBER;
+import static bridge.constant.ExceptionCode.WRONG_NUMBER;
 
 public enum BridgeConverter {
     U(1, "U"),
