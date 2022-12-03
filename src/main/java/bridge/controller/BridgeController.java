@@ -3,9 +3,9 @@ package bridge.controller;
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.BridgeGame;
+import bridge.domain.GameResult;
 import bridge.domain.GameSet;
-import bridge.service.ValidateMove;
-import bridge.service.ValidateSize;
+import bridge.service.Validate;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 import java.util.List;
@@ -15,15 +15,15 @@ public class BridgeController {
 
     InputView inputView;
     OutputView outputView;
-    ValidateSize validateSize;
-    ValidateMove validateMove;
+    GameSet gameSet;
+    Validate validate;
     BridgeMaker bridgeMaker;
     public BridgeController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.validateSize = new ValidateSize();
+        this.validate = new Validate();
+        this.gameSet=new GameSet();
         this.bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        this.validateMove = new ValidateMove();
     }
 
     public void start(){
@@ -35,15 +35,13 @@ public class BridgeController {
 
     private void moveStart(List<String> statementBridge, int size) {
         BridgeGame bridgeGame = new BridgeGame(statementBridge);
-        int idx=0;
         boolean retry=true;
         while(retry){
             if(!bridgeGame.move(readMovingValidate())){
-                GameSet gameSet = new GameSet();
-                gameSet.retryOrQuit(inputView.readGameCommand());
+                retry = gameSet.retryOrQuit(readCommendValidate(), bridgeGame);
             }
         }
-
+        outputView.printResult(bridgeGame, gameSet.getGameResult());
     }
 
 
@@ -51,7 +49,7 @@ public class BridgeController {
         int size=0;
         try{
             outputView.printInputSize();
-            size = validateSize.validate(inputView.readBridgeSize());
+            size = validate.validateSize(inputView.readBridgeSize());
         }catch(IllegalArgumentException e){
             outputView.printException(e.getMessage());
             return readBridgeValidate();
@@ -64,23 +62,23 @@ public class BridgeController {
         String move=null;
         try{
             outputView.printInputMove();
-            move = validateMove.validate(inputView.readMoving());
+            move = validate.validateMove(inputView.readMoving());
         }catch(IllegalArgumentException e){
             outputView.printException(e.getMessage());
             return readMovingValidate();
         }
         return move;
     }
-    private int readCommendValidate(){
-        int size=0;
+    private String readCommendValidate(){
+        String command=null;
         try{
-            outputView.printInputSize();
-            size = validateSize.validate(inputView.readBridgeSize());
+            outputView.printInputCommand();
+            command = validate.validateCommand(inputView.readGameCommand());
         }catch(IllegalArgumentException e){
             outputView.printException(e.getMessage());
-            return readBridgeValidate();
+            return readCommendValidate();
         }
-        return size;
+        return command;
     }
 
 }
