@@ -3,7 +3,6 @@ package bridge.controller;
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.BridgeGame;
-import bridge.domain.GameResult;
 import bridge.domain.GameSet;
 import bridge.service.Validate;
 import bridge.view.InputView;
@@ -36,12 +35,16 @@ public class BridgeController {
     private void moveStart(List<String> statementBridge, int size) {
         BridgeGame bridgeGame = new BridgeGame(statementBridge);
         boolean retry=true;
-        while(retry){
+        while(keepMoving(size, bridgeGame, retry)){
             if(!bridgeGame.move(readMovingValidate())){
-                retry = gameSet.retryOrQuit(readCommendValidate(), bridgeGame);
+                retry = gameSet.isRetry(readCommendValidate(), bridgeGame);
             }
         }
         outputView.printResult(bridgeGame, gameSet.getGameResult());
+    }
+
+    private static boolean keepMoving(int size, BridgeGame bridgeGame, boolean retry) {
+        return retry && size > bridgeGame.getNowIndex() + 1;
     }
 
 
@@ -69,6 +72,7 @@ public class BridgeController {
         }
         return move;
     }
+
     private String readCommendValidate(){
         String command=null;
         try{

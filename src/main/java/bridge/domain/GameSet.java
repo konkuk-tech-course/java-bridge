@@ -2,13 +2,13 @@ package bridge.domain;
 
 public class GameSet {
 
-    GameResult gameResult;
+    private GameResult gameResult;
 
     public GameSet() {
         this.gameResult = new GameResult();
     }
 
-    public boolean retryOrQuit(String readCommendValidate, BridgeGame bridgeGame) {
+    public boolean isRetry(String readCommendValidate, BridgeGame bridgeGame) {
         if(readCommendValidate.equals("R")){
             bridgeGame.retry();
             gameResult.setGameResult(true);

@@ -7,7 +7,8 @@ import java.util.List;
  */
 public class BridgeGame {
 
-    List<String> statementBridge;
+    private final List<String> statementBridge;
+
     private static int nowIndex=-1;
     Painting painting;
     String upState;
@@ -28,10 +29,8 @@ public class BridgeGame {
     public boolean move(String moving) {
         nowIndex++;
         if(!moveCheck(moving, statementBridge)){
-            retry();
             return false;
         }
-
         return true;
     }
 
@@ -55,7 +54,6 @@ public class BridgeGame {
             upState+=" ";
             downState+="X";
         }
-
     }
 
     private void setRightMoving(String moving) {
@@ -97,5 +95,9 @@ public class BridgeGame {
 
     public int getGameCount() {
         return gameCount;
+    }
+
+    public static int getNowIndex() {
+        return nowIndex;
     }
 }

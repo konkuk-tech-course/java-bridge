@@ -4,6 +4,11 @@ public class GameResult {
 
     private boolean gameResult;
 
+
+    public GameResult() {
+        this.gameResult = true;
+    }
+
     public boolean getGameResult() {
         return gameResult;
     }
