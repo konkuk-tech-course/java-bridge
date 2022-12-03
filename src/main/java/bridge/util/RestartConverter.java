@@ -21,7 +21,7 @@ public enum RestartConverter {
                 .filter(o -> o.restart.equals(restart))
                 .map(o -> o.result)
                 .findAny()
-                .orElseThrow(() -> new IllegalArgumentException(INVALID_QUIT_ANSWER.getMessage()));
+                .get();
     }
 
     public String getRestart() {

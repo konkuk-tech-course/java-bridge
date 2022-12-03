@@ -14,10 +14,17 @@ import static bridge.util.ExceptionCode.INVALID_QUIT_ANSWER;
  */
 public class BridgeGame {
 
-    private static List<List<String>> bridges;
+    public static List<List<String>> bridges = new ArrayList<>();
+    static {
+        bridges = List.of(new ArrayList<>(), new ArrayList<>());
+    }
 
 
-    public BridgeGame() {
+    private BridgeGame() {
+    }
+
+    public static void clear() {
+        bridges = new ArrayList<>();
         bridges = List.of(new ArrayList<>(), new ArrayList<>());
     }
 
@@ -26,22 +33,22 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static void move(String input, boolean success) {
+    public static boolean move(String input, boolean success) {
         if(Objects.equals(input, "U")) {
             bridges.get(0).add(successCrossBridge(success));
-            bridges.get(1).add(" ");
-            return;
+            bridges.get(1).add("   ");
         }
         if(Objects.equals(input, "D")) {
-            bridges.get(0).add(" ");
+            bridges.get(0).add("   ");
             bridges.get(1).add(successCrossBridge(success));
         }
+        return success;
     }
     private static String successCrossBridge(boolean success){
         if(success) {
-            return "O";
+            return " O ";
         }
-        return "X";
+        return " X ";
     }
 
     /**
