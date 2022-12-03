@@ -29,6 +29,15 @@ public class ViewValidator {
         }
     }
 
+    public static void validateRetryOptionInput(String input) {
+        if (isEmpty(input)) {
+            throw new IllegalArgumentException(ViewErrorMessage.EMPTY.get());
+        }
+        if (!isValidOption(input, ValidationRegex.RETRY_OPTION.get())) {
+            throw new IllegalArgumentException(ViewErrorMessage.INVALID_RETRY_OPTION.get());
+        }
+    }
+
     private static boolean isValidOption(String input, String optionRegex) {
         return Pattern.matches(optionRegex, input);
     }
