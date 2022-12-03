@@ -75,4 +75,8 @@ public class OutputView {
     public void insertLineBreak() {
         System.out.println();
     }
+
+    public void printErrorMessage(String errorMessage) {
+        System.out.println(errorMessage);
+    }
 }
