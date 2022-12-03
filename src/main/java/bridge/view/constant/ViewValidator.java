@@ -19,4 +19,17 @@ public class ViewValidator {
     private static boolean hasNonNumericCharacter(String input) {
         return !Pattern.matches(ValidationRegex.ONLY_NUMBER.get(), input);
     }
+
+    public static void validateMoveOptionInput(String input) {
+        if (isEmpty(input)) {
+            throw new IllegalArgumentException(ViewErrorMessage.EMPTY.get());
+        }
+        if (!isValidOption(input, ValidationRegex.MOVE_OPTION.get())) {
+            throw new IllegalArgumentException(ViewErrorMessage.INVALID_MOVE_OPTION.get());
+        }
+    }
+
+    private static boolean isValidOption(String input, String optionRegex) {
+        return Pattern.matches(optionRegex, input);
+    }
 }
