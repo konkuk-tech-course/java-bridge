@@ -3,8 +3,8 @@ package bridge.domain.constant;
 import java.util.Arrays;
 
 public enum PanelDirections {
-    DOWN("D", 0),
-    UP("U", 1);
+    UP("U", 1),
+    DOWN("D", 0);
 
     private final String symbol;
     private final int key;
