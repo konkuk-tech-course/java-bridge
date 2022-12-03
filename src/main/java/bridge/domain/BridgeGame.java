@@ -1,4 +1,4 @@
-package bridge;
+package bridge.domain;
 
 import bridge.util.ExceptionCode;
 import bridge.util.RestartConverter;
@@ -15,11 +15,6 @@ import static bridge.util.ExceptionCode.INVALID_QUIT_ANSWER;
 public class BridgeGame {
 
     public static List<List<String>> bridges = new ArrayList<>();
-    static {
-        bridges = List.of(new ArrayList<>(), new ArrayList<>());
-    }
-
-
     private BridgeGame() {
     }
 
