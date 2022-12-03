@@ -9,7 +9,11 @@
     - [x] 필드, 생성자, getter
     - [x] 칸에 관련된 상수 생성 (UP, DOWN)
     - [x] n번째 칸에 대한 시도 결과 boolean 반환
-- User
+- [ ] User
+    - [ ] 필드, 생성자, getter
+    - [ ] 게임 상태 관련 상수 생성
+    - [ ] 시도 관련 메서드
+    - [ ] 재시도 관련 메서드
 
 ## service
 - UserService
