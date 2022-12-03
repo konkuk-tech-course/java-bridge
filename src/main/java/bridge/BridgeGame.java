@@ -6,7 +6,8 @@ import java.util.List;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    List<String> bridgeInfo = BridgeGameController.initiallizeBridge(다리 길이 반복 입력받는 컨트롤러 메소드);
+    List<String> bridgeInfo = BridgeGameController.initializeBridge(BridgeGameController.repeatReadBridgeSize());
+    Integer tryCount = 0;
     public BridgeGame() {
 
     }
