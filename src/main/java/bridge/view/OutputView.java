@@ -21,6 +21,10 @@ public class OutputView {
         return OutputView.InstanceHolder.INSTANCE;
     }
 
+    public void printStartPhrase() {
+        System.out.println(OutputPhrase.GAME_START.get());
+    }
+
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
@@ -53,7 +57,7 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult(List<List<ChoiceResult>> bridge, boolean isGameClear, int attemptCount) {
-        System.out.println(OutputPhrase.TITLE.get());
+        System.out.println(OutputPhrase.RESULT_TITLE.get());
         printMap(bridge);
         insertLineBreak();
         System.out.println(createResultPhrase(isGameClear));
