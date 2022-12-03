@@ -90,6 +90,8 @@ public class BridgeGameController {
         if (success) {
             OutputView.printResult(map, "성공", tryCount);
         }
-        OutputView.printResult(map, "실패", tryCount);
+        if (!success) {
+            OutputView.printResult(map, "실패", tryCount);
+        }
     }
 }

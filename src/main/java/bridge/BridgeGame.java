@@ -30,6 +30,9 @@ public class BridgeGame {
         this.keepPlay = true;
         while (keepPlay) {
             Boolean result = repeatProcess();
+            if (result) {
+                this.success = true;
+            }
             this.tryCount++;
             printResult(printMap(playerMap, bridgeInfo), success, tryCount);
             retry(result);
@@ -65,13 +68,6 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry(Boolean result) {
-        if (result) {
-            this.success = true;
-            keepPlay = repeatAskRestart();
-        }
-        if (!result) {
-            this.success = false;
-            keepPlay = repeatAskRestart();
-        }
+        this.keepPlay = repeatAskRestart();
     }
 }
