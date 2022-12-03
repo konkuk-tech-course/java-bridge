@@ -47,4 +47,20 @@ public class ViewValidatorTest {
         assertThatCode(() -> ViewValidator.validateMoveOptionInput(input))
                 .doesNotThrowAnyException();
     }
+
+    @ParameterizedTest(name = "{index}) option input = {0}")
+    @ValueSource(strings = { "RQ", "1", "r", "u", "dsfe" })
+    void When_InvalidRetryOption_Expect_IllegalArgumentException(String input) {
+        assertThatThrownBy(() -> ViewValidator.validateRetryOptionInput(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ERROR_PREFIX)
+                .hasMessageContaining("R(재시도), Q(종료)");
+    }
+
+    @ParameterizedTest(name = "{index}) option input = {0}")
+    @ValueSource(strings = { "R", "Q" })
+    void When_ValidRetryOption_Expect_NoException(String input) {
+        assertThatCode(() -> ViewValidator.validateRetryOptionInput(input))
+                .doesNotThrowAnyException();
+    }
 }
