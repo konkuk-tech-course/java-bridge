@@ -48,15 +48,15 @@
         - [x] 유효성 검증을 위한 정규표현식 생성
         - [x] 에러메세지 추가
         - [x] 유효성 검증 작성
-- [ ] OutputView
+- [x] OutputView
     - [x] printMap 구현
         - [x] 시도 결과 스타일 enum 생성
         - [x] 다리 스타일 요소 enum 생성
         - [x] printMap 메서드 작성
-    - [ ] printResult 구현
-        - [ ] 출력 문구 생성
-        - [ ] 성공 여부 결과 style 관련 enum 생성
-        - [ ] printResult 메서드 작성
+    - [x] printResult 구현
+        - [x] 출력 문구 생성
+        - [x] 성공 여부 결과 style 관련 enum 생성
+        - [x] printResult 메서드 작성
 
 ## controller
 - GameController
