@@ -20,8 +20,13 @@
 ## service
 - [x] UserService
     - [x] User 생성
-- BridgeService
-- GameService
+- [ ] BridgeService
+    - [ ] BridgeMaker의 makeBridge 구현
+    - [ ] 다리 생성
+- [ ] GameService == BridgeGame
+    - [ ] move 메서드 구현
+    - [ ] retry 메서드 구현
+    - [ ] 주어진 칸까지의 시도 결과를 줄 별 리스트로 반환하는 메서드
 
 ## view
 - InputView
