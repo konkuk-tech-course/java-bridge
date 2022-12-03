@@ -24,7 +24,9 @@ public class InputView {
      */
     public String readMoving() {
         System.out.println(InputPhrase.MOVE.get());
-        return null;
+        String moveOptionInput = Console.readLine().trim();
+        ViewValidator.validateMoveOptionInput(moveOptionInput);
+        return moveOptionInput;
     }
 
     /**
