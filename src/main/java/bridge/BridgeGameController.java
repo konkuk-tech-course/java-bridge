@@ -1,5 +1,6 @@
 package bridge;
 
+import static bridge.InputView.readGameCommand;
 import static bridge.InputView.readMoving;
 
 import java.util.List;
@@ -32,9 +33,21 @@ public class BridgeGameController {
                 String input = readMoving();
                 return input;
             } catch (IllegalArgumentException e) {
-                OutputView.String("\"[ERROR] 유효한 값을 입력해주세요. (위: U, 아래: D)");
+                OutputView.String("[ERROR] 유효한 값을 입력해주세요. (위: U, 아래: D)");
             }
         }
+    }
+
+    public static Boolean repeatAskRestart() {
+        while (true) {
+            try {
+                OutputView.String("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+                readGameCommand();
+            } catch (IllegalArgumentException e) {
+                OutputView.String("[ERROR] 유효한 값을 입력해주세요. (재시도: R, 종료: Q)");
+            }
+        }
+
     }
 
     public static void print(String str) {

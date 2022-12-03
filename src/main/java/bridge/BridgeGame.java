@@ -1,6 +1,8 @@
 package bridge;
 
+import static bridge.BridgeGameController.repeatAskRestart;
 import static bridge.BridgeGameController.repeatReadMoving;
+import static bridge.InputView.readGameCommand;
 
 import java.util.List;
 
@@ -13,15 +15,19 @@ public class BridgeGame {
     private Boolean success = false;
     private Integer tryCount = 0;
     private Integer playerLocation = 0;
+    private Boolean keepPlay = true;
     public BridgeGame() {
         play();
     }
 
     public void play() {
-        // 성공 여부, 플레이어 위치 초기화
-        Boolean result = repeatProcess();
-        if (result) {
-            this.success = true;
+        this.success = false;
+        this.playerLocation = 0;
+        this.keepPlay = true;
+        while (keepPlay) {
+            Boolean result = repeatProcess();
+            this.tryCount++;
+            retry(result);
         }
     }
 
@@ -46,7 +52,7 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move() {
-        // playerLocation++
+        playerLocation++;
     }
 
     /**
@@ -54,6 +60,14 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    public void retry(Boolean result) {
+        if (result) {
+            this.success = true;
+            keepPlay = repeatAskRestart();
+        }
+        if (!result) {
+            this.success = false;
+            keepPlay = repeatAskRestart();
+        }
     }
 }
