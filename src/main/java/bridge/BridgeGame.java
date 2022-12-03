@@ -28,6 +28,11 @@ public class BridgeGame {
         System.out.println(bridgeInfo.toString());
         this.success = false;
         this.keepPlay = true;
+        repeatGame();
+        printResult(makeMap(playerMap, bridgeInfo), success, tryCount);
+    }
+
+    public void repeatGame() {
         while (keepPlay) {
             this.playerMap.clear();
             Boolean result = repeatProcess();
@@ -38,7 +43,6 @@ public class BridgeGame {
             }
             retry();
         }
-        printResult(makeMap(playerMap, bridgeInfo), success, tryCount);
     }
 
     public Boolean repeatProcess() {
