@@ -1,6 +1,5 @@
 package bridge;
 
-import bridge.domain.GameState;
 
 public enum LocationState {
 

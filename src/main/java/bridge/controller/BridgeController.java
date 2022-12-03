@@ -3,7 +3,7 @@ package bridge.controller;
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.BridgeGame;
-import bridge.domain.GameSet;
+import bridge.domain.GameStop;
 import bridge.service.Validate;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -12,23 +12,22 @@ import java.util.List;
 public class BridgeController {
 
 
-    InputView inputView;
-    OutputView outputView;
-    GameSet gameSet;
-    Validate validate;
-    BridgeMaker bridgeMaker;
+    private InputView inputView;
+    private OutputView outputView;
+    private GameStop gameStop;
+    private Validate validate;
+    private BridgeMaker bridgeMaker;
     public BridgeController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.validate = new Validate();
-        this.gameSet=new GameSet();
+        this.gameStop =new GameStop();
         this.bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     }
 
     public void start(){
         int size = readBridgeValidate();
         List<String> statementBridge = bridgeMaker.makeBridge(size);
-        System.out.println("statementBridge = " + statementBridge);;
         moveStart(statementBridge,size);
     }
 
@@ -38,10 +37,10 @@ public class BridgeController {
         while(keepMoving(size, bridgeGame, retry)){
             String moving = bridgeGame.move(readMovingValidate());
             if(!bridgeGame.moveCheck(moving)){
-                retry = gameSet.isRetry(readCommandValidate(), bridgeGame);
+                retry = gameStop.isRetry(readCommandValidate(), bridgeGame);
             }
         }
-        outputView.printResult(bridgeGame, gameSet.getGameResult());
+        outputView.printResult(bridgeGame, gameStop.getGameResult());
     }
 
     private static boolean keepMoving(int size, BridgeGame bridgeGame, boolean retry) {

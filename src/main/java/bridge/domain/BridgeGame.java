@@ -9,9 +9,9 @@ import java.util.List;
  */
 public class BridgeGame {
 
-    private final List<String> bridgeStatement;
 
     private static int nowIndex = GameState.INIT_INDEX.getIndex();
+    private final List<String> bridgeStatement;
     private Painting painting;
     private String upState;
     private String downState;

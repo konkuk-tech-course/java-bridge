@@ -1,10 +1,10 @@
 package bridge.domain;
 
-public class GameSet {
+public class GameStop {
 
     private GameResult gameResult;
 
-    public GameSet() {
+    public GameStop() {
         this.gameResult = new GameResult();
     }
 
