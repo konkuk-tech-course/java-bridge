@@ -5,6 +5,8 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import bridge.view.constant.ViewValidator;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class ViewValidatorTest {
     private static final String ERROR_PREFIX = "[ERROR]";
@@ -27,6 +29,22 @@ public class ViewValidatorTest {
     @Test
     void When_NumberInput_Expect_NoException() {
         assertThatCode(() -> ViewValidator.validateNumberInput("13"))
+                .doesNotThrowAnyException();
+    }
+
+    @ParameterizedTest(name = "{index}) option input = {0}")
+    @ValueSource(strings = { "UD", "1", "R", "u", "dsfe" })
+    void When_InvalidMoveOption_Expect_IllegalArgumentException(String input) {
+        assertThatThrownBy(() -> ViewValidator.validateMoveOptionInput(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ERROR_PREFIX)
+                .hasMessageContaining("U(위), D(아래)");
+    }
+
+    @ParameterizedTest(name = "{index}) option input = {0}")
+    @ValueSource(strings = { "U", "D" })
+    void When_ValidMoveOption_Expect_NoException(String input) {
+        assertThatCode(() -> ViewValidator.validateMoveOptionInput(input))
                 .doesNotThrowAnyException();
     }
 }
