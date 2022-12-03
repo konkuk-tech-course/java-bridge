@@ -53,4 +53,11 @@ public class BridgeGameController {
     public static void print(String str) {
         OutputView.String(str);
     }
+
+    public static void printResult(Boolean success, Integer tryCount) {
+        if (success) {
+            OutputView.printResult("성공", tryCount);
+        }
+        OutputView.printResult("실패", tryCount);
+    }
 }

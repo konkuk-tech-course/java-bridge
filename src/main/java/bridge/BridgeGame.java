@@ -1,5 +1,6 @@
 package bridge;
 
+import static bridge.BridgeGameController.printResult;
 import static bridge.BridgeGameController.repeatAskRestart;
 import static bridge.BridgeGameController.repeatReadMoving;
 import static bridge.InputView.readGameCommand;
@@ -26,6 +27,9 @@ public class BridgeGame {
         this.keepPlay = true;
         while (keepPlay) {
             Boolean result = repeatProcess();
+            if (result) {
+                printResult();
+            }
             this.tryCount++;
             retry(result);
         }
