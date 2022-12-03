@@ -10,10 +10,6 @@ public class BridgeGameController {
         return bridgeMaker.makeBridge(bridgeSize);
     }
 
-    public static void play() {
-        
-    }
-
     public static Integer repeatReadBridgeSize() {
         while (true) {
             try {
@@ -26,5 +22,9 @@ public class BridgeGameController {
                 OutputView.String("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
             }
         }
+    }
+
+    public static void print(String str) {
+        OutputView.String(str);
     }
 }
