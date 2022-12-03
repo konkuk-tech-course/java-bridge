@@ -70,16 +70,20 @@ public class BridgeGameController {
                     lowerMap.add(" O ");
                 }
             }
-            if (playerMap.get(i).equals("U")) {
-                upperMap.add(" X ");
-                lowerMap.add("   ");
-            }
-            if (playerMap.get(i).equals("D")) {
-                upperMap.add("   ");
-                lowerMap.add(" X ");
+            if (!playerMap.get(i).equals(bridgeInfo.get(i))) {
+                if (playerMap.get(i).equals("U")) {
+                    upperMap.add(" X ");
+                    lowerMap.add("   ");
+                }
+                if (playerMap.get(i).equals("D")) {
+                    upperMap.add("   ");
+                    lowerMap.add(" X ");
+                }
             }
         }
-        return new ArrayList<>(Arrays.asList(upperMap, lowerMap));
+        List<List<String>> result = new ArrayList<>(Arrays.asList(upperMap, lowerMap));
+        OutputView.printMap(result);
+        return result;
     }
 
     public static void printResult(List<List<String>> map, Boolean success, Integer tryCount) {

@@ -24,6 +24,7 @@ public class BridgeGame {
     }
 
     public void play() {
+        System.out.println(bridgeInfo.toString());
         this.success = false;
         this.playerMap = new ArrayList<>();
         this.keepPlay = true;

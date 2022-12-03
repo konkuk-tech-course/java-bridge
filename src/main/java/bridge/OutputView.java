@@ -17,7 +17,7 @@ public class OutputView {
      */
     public static void printMap(List<List<String>> map) {
         for (List<String> list : map) {
-            System.out.println(String.join("|", list));
+            System.out.println(list.toString().replaceAll(", ", "|"));
         }
     }
 
