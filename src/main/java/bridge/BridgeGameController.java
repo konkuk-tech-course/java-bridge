@@ -44,7 +44,7 @@ public class BridgeGameController {
         while (true) {
             try {
                 OutputView.String("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
-                readGameCommand();
+                return readGameCommand();
             } catch (IllegalArgumentException e) {
                 OutputView.String("[ERROR] 유효한 값을 입력해주세요. (재시도: R, 종료: Q)");
             }
@@ -56,7 +56,11 @@ public class BridgeGameController {
         OutputView.String(str);
     }
 
-    public static List<List<String>> printMap(List<String> playerMap, List<String> bridgeInfo) {
+    public static void printMap(List<String> playerMap, List<String> bridgeInfo) {
+        OutputView.printMap(makeMap(playerMap, bridgeInfo));
+    }
+
+    public static List<List<String>> makeMap(List<String> playerMap, List<String> bridgeInfo) {
         List<String> upperMap = new ArrayList<>();
         List<String> lowerMap = new ArrayList<>();
         for (Integer i=0; i < playerMap.size(); i++) {
@@ -82,7 +86,6 @@ public class BridgeGameController {
             }
         }
         List<List<String>> result = new ArrayList<>(Arrays.asList(upperMap, lowerMap));
-        OutputView.printMap(result);
         return result;
     }
 
