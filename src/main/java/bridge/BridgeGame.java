@@ -1,5 +1,7 @@
 package bridge;
 
+import static bridge.BridgeGameController.repeatReadMoving;
+
 import java.util.List;
 
 /**
@@ -25,11 +27,11 @@ public class BridgeGame {
 
     public Boolean repeatProcess() {
         for (Integer I = 0; I < bridgeSize; I++) {
-            OutputView.String("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+            BridgeGameController.print("이동할 칸을 선택해주세요. (위: U, 아래: D)");
             String input = repeatReadMoving();
             Boolean result = BridgeGameController.analyzeMoving(input);
             if (result) {
-                BridgeGame.move();
+                move();
             }
             if (!result) {
                 return false;

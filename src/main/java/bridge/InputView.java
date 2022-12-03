@@ -21,8 +21,12 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
-        return null;
+    public static String readMoving() {
+        String input = camp.nextstep.edu.missionutils.Console.readLine();
+        if (input.equals("U") | input.equals("D")) {
+            return input;
+        }
+        throw new IllegalArgumentException("[ERROR] 유효한 값을 입력해주세요. (위: U, 아래: D)");
     }
 
     /**

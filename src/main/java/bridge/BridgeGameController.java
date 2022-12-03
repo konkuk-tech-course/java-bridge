@@ -1,5 +1,7 @@
 package bridge;
 
+import static bridge.InputView.readMoving;
+
 import java.util.List;
 
 public class BridgeGameController {
@@ -20,6 +22,17 @@ public class BridgeGameController {
                 OutputView.String("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
             } catch (IllegalArgumentException e) {
                 OutputView.String("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+            }
+        }
+    }
+
+    public static String repeatReadMoving() {
+        while (true) {
+            try {
+                String input = readMoving();
+                return input;
+            } catch (IllegalArgumentException e) {
+                OutputView.String("\"[ERROR] 유효한 값을 입력해주세요. (위: U, 아래: D)");
             }
         }
     }
