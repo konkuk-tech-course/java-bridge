@@ -20,17 +20,10 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         List<String> bridgeState= new ArrayList<>();
-        for(int i=0; i<size; i++){
-            bridgeState.add(convertGenerateToState(bridgeNumberGenerator.generate()));
+        for(int index=0; index<size; index++){
+            bridgeState.add(LocationState.convertGenerateToLocation(bridgeNumberGenerator.generate()));
         }
         return bridgeState;
-    }
-
-    private String convertGenerateToState(int generate) {
-        if(generate == 0){
-            return "D";
-        }
-        return "U";
     }
 
 

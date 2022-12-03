@@ -36,8 +36,9 @@ public class BridgeController {
         BridgeGame bridgeGame = new BridgeGame(statementBridge);
         boolean retry=true;
         while(keepMoving(size, bridgeGame, retry)){
-            if(!bridgeGame.move(readMovingValidate())){
-                retry = gameSet.isRetry(readCommendValidate(), bridgeGame);
+            String moving = bridgeGame.move(readMovingValidate());
+            if(!bridgeGame.moveCheck(moving)){
+                retry = gameSet.isRetry(readCommandValidate(), bridgeGame);
             }
         }
         outputView.printResult(bridgeGame, gameSet.getGameResult());
@@ -73,14 +74,14 @@ public class BridgeController {
         return move;
     }
 
-    private String readCommendValidate(){
+    private String readCommandValidate(){
         String command=null;
         try{
             outputView.printInputCommand();
             command = validate.validateCommand(inputView.readGameCommand());
         }catch(IllegalArgumentException e){
             outputView.printException(e.getMessage());
-            return readCommendValidate();
+            return readCommandValidate();
         }
         return command;
     }

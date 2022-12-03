@@ -1,5 +1,7 @@
 package bridge.domain;
 
+import bridge.LocationState;
+import bridge.view.Painting;
 import java.util.List;
 
 /**
@@ -7,18 +9,20 @@ import java.util.List;
  */
 public class BridgeGame {
 
-    private final List<String> statementBridge;
+    private final List<String> bridgeStatement;
 
-    private static int nowIndex=-1;
-    Painting painting;
-    String upState;
-    String downState;
-    static int gameCount=1;
-    public BridgeGame(List<String> statementBridge) {
-        this.statementBridge= statementBridge;
-        this.upState="";
-        this.downState="";
-        this.painting=new Painting();
+    private static int nowIndex = GameState.INIT_INDEX.getIndex();
+    private Painting painting;
+    private String upState;
+    private String downState;
+    private int gameCount;
+
+    public BridgeGame(List<String> bridgeStatement) {
+        this.bridgeStatement = bridgeStatement;
+        this.gameCount=1;
+        this.upState = "";
+        this.downState = "";
+        this.painting = new Painting();
     }
 
     /**
@@ -26,45 +30,49 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean move(String moving) {
+    public String move(String moving) {
         nowIndex++;
-        if(!moveCheck(moving, statementBridge)){
-            return false;
-        }
-        return true;
+        return moving;
     }
 
-    private boolean moveCheck(String moving, List<String> statementBridge) {
-        if (moving.equals(statementBridge.get(nowIndex))) {
-            setRightMoving(moving);
-            painting.paint(upState,downState);
+    public boolean moveCheck(String moving) {
+        if (isRightMoving(moving)) {
+            setRightMovingState(moving);
+            painting.paint(upState, downState);
             return true;
         }
-        setWrongMoving(moving);
-        painting.paint(upState,downState);
+        setWrongMovingState(moving);
+        painting.paint(upState, downState);
         return false;
     }
 
-    private void setWrongMoving(String moving) {
-        if(moving.equals("U")){
-            upState+="X";
-            downState+=" ";
+    private boolean isRightMoving(String moving) {
+        if (moving.equals(bridgeStatement.get(nowIndex))) {
+            return true;
         }
-        if(moving.equals("D")){
-            upState+=" ";
-            downState+="X";
+        return false;
+    }
+
+    private void setWrongMovingState(String moving) {
+        if (moving.equals(LocationState.UP.getState())) {
+            upState += GameState.WRONG.getState();
+            downState += GameState.EMPTY.getState();
+        }
+        if (moving.equals(LocationState.DOWN.getState())) {
+            upState += GameState.EMPTY.getState();
+            downState += GameState.WRONG.getState();
         }
     }
 
-    private void setRightMoving(String moving) {
-            if(moving.equals("U")){
-                upState+="O";
-                downState+=" ";
-            }
-            if(moving.equals("D")){
-                upState+=" ";
-                downState+="O";
-            }
+    private void setRightMovingState(String moving) {
+        if (moving.equals(LocationState.UP.getState())) {
+            upState += GameState.RIGHT.getState();
+            downState += GameState.EMPTY.getState();
+        }
+        if (moving.equals(LocationState.DOWN.getState())) {
+            upState += GameState.EMPTY.getState();
+            downState += GameState.RIGHT.getState();
+        }
     }
 
 
@@ -88,9 +96,9 @@ public class BridgeGame {
     }
 
     private void initInfo() {
-        upState="";
-        downState="";
-        nowIndex=-1;
+        upState = GameState.INIT_STATE.getState();
+        downState = GameState.INIT_STATE.getState();
+        nowIndex = GameState.INIT_INDEX.getIndex();
     }
 
     public int getGameCount() {
