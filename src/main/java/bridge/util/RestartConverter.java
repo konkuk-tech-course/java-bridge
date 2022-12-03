@@ -1,0 +1,34 @@
+package bridge.util;
+
+import java.util.Arrays;
+
+import static bridge.util.ExceptionCode.INVALID_QUIT_ANSWER;
+
+public enum RestartConverter {
+    Q("Q", false),
+    R("R", true);
+
+    private final String restart;
+    private final boolean result;
+
+    RestartConverter(String restart, boolean result) {
+        this.restart = restart;
+        this.result = result;
+    }
+
+    public static boolean result(String restart) {
+        return Arrays.stream(RestartConverter.values())
+                .filter(o -> o.restart.equals(restart))
+                .map(o -> o.result)
+                .findAny()
+                .orElseThrow(() -> new IllegalArgumentException(INVALID_QUIT_ANSWER.getMessage()));
+    }
+
+    public String getRestart() {
+        return restart;
+    }
+
+    public boolean isResult() {
+        return result;
+    }
+}
