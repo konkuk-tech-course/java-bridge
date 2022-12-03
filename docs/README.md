@@ -20,9 +20,9 @@
 ## service
 - [x] UserService
     - [x] User 생성
-- [ ] BridgeService
-    - [ ] BridgeMaker의 makeBridge 구현
-    - [ ] 다리 생성
+- [x] BridgeService
+    - [x] BridgeMaker의 makeBridge 구현
+    - [x] 다리 생성
 - [ ] GameService == BridgeGame
     - [ ] move 메서드 구현
     - [ ] retry 메서드 구현
