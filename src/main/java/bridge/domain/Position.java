@@ -32,4 +32,9 @@ public class Position {
         return this.value;
     }
 
+    public Position increase() {
+        validatekey(value + 1);
+        return POSITIONS.get(value + 1);
+    }
+
 }
