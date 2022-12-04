@@ -26,7 +26,7 @@ public class Player {
         return tryCount;
     }
 
-    public Position getPosition() {
-        return position;
+    public int getPosition() {
+        return position.getValue();
     }
 }
