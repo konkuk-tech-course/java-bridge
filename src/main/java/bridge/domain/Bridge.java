@@ -7,7 +7,8 @@ import java.util.List;
 public class Bridge {
 
     private final List<String> bridge;
-
+    
+    // bridgeMaker로 만든 list 생성자로 넘기기
     public Bridge(List<String> bridge) {
         this.bridge = bridge;
     }
