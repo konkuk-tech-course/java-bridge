@@ -2,8 +2,8 @@ package bridge.constraints;
 
 public enum OXSign {
 
-    SUCCESS_SIGN("O"),
-    FAIL_SIGN("X");
+    SUCCESS_SIGN(" O "),
+    FAIL_SIGN(" X ");
 
     private final String sign;
 
