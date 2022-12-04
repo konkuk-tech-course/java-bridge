@@ -14,6 +14,10 @@ public class Player {
         position = position.increase();
     }
 
+    public void resetPosition() {
+        position = position.reset();
+    }
+
     public void increaseTryCount() {
         this.tryCount++;
     }

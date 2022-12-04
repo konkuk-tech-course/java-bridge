@@ -37,4 +37,8 @@ public class Position {
         return POSITIONS.get(value + 1);
     }
 
+    public Position reset() {
+        return POSITIONS.get(0);
+    }
+
 }
