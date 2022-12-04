@@ -9,7 +9,7 @@ public enum OutputMessage {
     TRY_COUNT_MESSAGE("총 시도한 횟수: "),
     LEFT_SQARE_BRACKET("["),
     RIGHT_SQARE_BRACKET("]"),
-    BAR(" | ");
+    BAR("|");
 
     private final String message;
 
