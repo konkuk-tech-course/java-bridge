@@ -65,7 +65,7 @@
 <summary><b>프로세스 진행 및 제약 사항</b></summary>
 <div markdown="1">
 
-- [ ] 다리 만들기
+- [x] 다리만들기 - BridgeMaker 클래스
 - [ ] domain의 내용을 합쳐 controller에서 처리
 - Application에서는 controller를 참고해 실행하는 로직만 구현
 </div>
