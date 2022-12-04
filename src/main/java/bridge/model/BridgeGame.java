@@ -1,5 +1,6 @@
 package bridge.model;
 
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -7,12 +8,24 @@ import java.util.List;
  */
 public class BridgeGame {
 
-    private List<String> bridge;
-    private int count;
+    private List<String> upCommand;
+    private List<String> downCommand;
+    private int moveCount;
+    private int gameCount;
 
-    public BridgeGame(List<String> bridge) {
-        this.bridge = bridge;
-        this.count = 0;
+    public BridgeGame() {
+        this.upCommand = new LinkedList<>();
+        this.downCommand = new LinkedList<>();
+        this.gameCount = 1;
+        this.moveCount = 0;
+    }
+
+    public int getMoveCount() {
+        return moveCount;
+    }
+
+    public int getGameCount() {
+        return gameCount;
     }
 
     /**
@@ -20,8 +33,23 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean move(String move) {
-        return bridge.get(count++).equals(move);
+    public List<List<String>> move(MoveResult moveResult) {
+        if (moveResult.getCommand().equals(Direction.UP.getCommand())) {
+            return addUpCount(moveResult);
+        }
+        return addDownCount(moveResult);
+    }
+
+    private List<List<String>> addDownCount(MoveResult moveResult) {
+        downCommand.add(moveResult.getCommand());
+        upCommand.add(" ");
+        return List.of(upCommand, downCommand);
+    }
+
+    private List<List<String>> addUpCount(MoveResult moveResult) {
+        upCommand.add(moveResult.getCommand());
+        downCommand.add(" ");
+        return List.of(upCommand, downCommand);
     }
 
     /**
@@ -29,17 +57,14 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean retry(String retry) {
-        if (retry.equals("R")) {
-            return true;
-        }
-        if (retry.equals("Q")) {
-            return false;
-        }
-        throw new IllegalStateException();
+    public void retry() {
+        upCommand.clear();
+        downCommand.clear();
+        gameCount++;
     }
 
-    public boolean isEscape() {
-        return (count == bridge.size());
+    public int countMove() {
+        return moveCount++;
     }
+
 }
