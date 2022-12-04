@@ -1,14 +1,12 @@
 package bridge;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class BridgeMakerTest {
 
@@ -26,7 +24,7 @@ class BridgeMakerTest {
     void 다리_생성_테스트() {
         Integer inputSize = 3;
         List<String> randomBridge = bridgeMaker.makeBridge(inputSize);
-        Assertions.assertEquals(randomBridge.size(), 3, "bridge 크기가 잘못되었습니다");
+        assertEquals(randomBridge.size(), 3, "bridge 크기가 잘못되었습니다");
     }
 
 }
