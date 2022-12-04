@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.LocationState;
 import bridge.domain.BridgeGame;
 import java.util.List;
 
@@ -24,11 +25,14 @@ public class OutputView {
      */
     public void printResult(List<String> state,int gameCount, boolean gameResult) { // bridgeGame이 연결되어있음.
         System.out.println(OutputConstant.RESULT_ANNOUNCE.message());
-        Painting.paint(state.get(1), state.get(0));
+        printResultPaint(state);
         System.out.println(OutputConstant.GAME_RESULT.message() + ConvertResult.convert(gameResult));
         System.out.println(OutputConstant.GAME_COUNT.message() + gameCount);
     }
 
+    private static void printResultPaint(List<String> state) {
+        Painting.paint(state.get(LocationState.UP.getStateNum()), state.get(LocationState.DOWN.getStateNum()));
+    }
 
 
     public void printException(String message) {

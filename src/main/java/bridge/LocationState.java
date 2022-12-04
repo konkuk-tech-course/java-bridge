@@ -3,18 +3,23 @@ package bridge;
 
 public enum LocationState {
 
-    UP("U"),
-    DOWN("D");
+    UP("U", 1),
+    DOWN("D", 0);
 
     private String state;
-    private static final int GENERATE_DOWN=0;
+    private int stateNum;
 
-    LocationState(String state) {
+    LocationState(String state, int stateNum) {
         this.state = state;
+        this.stateNum=stateNum;
+    }
+
+    public int getStateNum() {
+        return stateNum;
     }
 
     public static String convertGenerateToLocation(int generate) {
-        if(generate == GENERATE_DOWN){
+        if(generate == DOWN.stateNum){
             return DOWN.state;
         }
         return UP.state;
