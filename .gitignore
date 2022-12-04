@@ -33,3 +33,9 @@ out/
 
 ### VS Code ###
 .vscode/
+
+##
+/gradle
+gradle*
+/settings.gradle
+/build.gradle
