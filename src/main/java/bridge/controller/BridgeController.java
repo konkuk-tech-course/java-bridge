@@ -7,16 +7,17 @@ import bridge.domain.GameStop;
 import bridge.service.Validate;
 import bridge.view.InputView;
 import bridge.view.OutputView;
+import java.util.Arrays;
 import java.util.List;
 
 public class BridgeController {
-
 
     private InputView inputView;
     private OutputView outputView;
     private GameStop gameStop;
     private Validate validate;
     private BridgeMaker bridgeMaker;
+
     public BridgeController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
@@ -33,14 +34,18 @@ public class BridgeController {
 
     private void moveStart(List<String> statementBridge, int size) {
         BridgeGame bridgeGame = new BridgeGame(statementBridge);
-        boolean retry=true;
+        boolean retry = true;
         while(keepMoving(size, bridgeGame, retry)){
             String moving = bridgeGame.move(readMovingValidate());
             if(!bridgeGame.moveCheck(moving)){
                 retry = gameStop.isRetry(readCommandValidate(), bridgeGame);
             }
         }
-        outputView.printResult(bridgeGame, gameStop.getGameResult());
+        outputView.printResult(setResultList(bridgeGame), bridgeGame.getGameCount(), gameStop.getGameResult());
+    }
+
+    private List<String> setResultList(BridgeGame bridgeGame) {
+        return Arrays.asList(bridgeGame.getUpState(), bridgeGame.getDownState());
     }
 
     private static boolean keepMoving(int size, BridgeGame bridgeGame, boolean retry) {

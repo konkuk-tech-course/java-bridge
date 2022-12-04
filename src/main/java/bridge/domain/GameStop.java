@@ -7,7 +7,7 @@ public class GameStop {
     public GameStop() {
         this.gameResult = new GameResult();
     }
-
+    // 도메인보다는 컨트롤러의 성향이 더 강한 코드 -> 좀 더 생각
     public boolean isRetry(String readCommandValidate, BridgeGame bridgeGame) {
         if(readCommandValidate.equals(GameCommand.RETRY.getCommand())){
             bridgeGame.retry();
